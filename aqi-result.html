@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQI Result</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+.header {
+    background: #1e3c72;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.container {
+    padding: 20px;
+}
+
+.top-section {
+    display: flex;
+    gap: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* AQI Gauge */
+.gauge-container {
+    text-align: center;
+}
+
+.gauge {
+    width: 160px;
+    height: 80px;
+    border-radius: 160px 160px 0 0;
+    background: conic-gradient(
+        green 0deg 90deg,
+        yellow 90deg 180deg,
+        orange 180deg 270deg,
+        red 270deg 360deg
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.gauge::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 120px;
+    height: 60px;
+    background: #fff;
+    border-radius: 120px 120px 0 0;
+}
+
+.aqi-value {
+    margin-top: -40px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.aqi-status {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* City info */
+.city-info {
+    flex: 1;
+}
+
+.date {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Table */
+.table-section {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #1e3c72;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+.btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">AQI Dashboard Result</div>
+
+<div class="container">
+
+    <!-- TOP -->
+    <div class="top-section">
+
+        <!-- LHS GAUGE -->
+        <div class="gauge-container">
+            <div class="gauge"></div>
+            <div class="aqi-value" id="aqiValue">--</div>
+            <div class="aqi-status" id="aqiStatus">--</div>
+        </div>
+
+        <!-- CITY INFO -->
+        <div class="city-info">
+            <h2 id="cityName">City</h2>
+            <div>Prominent Pollutant: <span id="mainPollutant">--</span></div>
+            <div class="date" id="dateTime"></div>
+        </div>
+
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-section">
+        <h3>Pollutant Levels</h3>
+
+        <table>
+            <tr>
+                <th>Pollutant</th>
+                <th>Current</th>
+                <th>Avg</th>
+                <th>Min</th>
+                <th>Max</th>
+            </tr>
+
+            <tr>
+                <td>PM2.5</td>
+                <td id="pm25">--</td>
+                <td id="pm25_avg">--</td>
+                <td id="pm25_min">--</td>
+                <td id="pm25_max">--</td>
+            </tr>
+
+            <tr>
+                <td>PM10</td>
+                <td id="pm10">--</td>
+                <td id="pm10_avg">--</td>
+                <td id="pm10_min">--</td>
+                <td id="pm10_max">--</td>
+            </tr>
+
+            <tr>
+                <td>NO2</td>
+                <td id="no2">--</td>
+                <td id="no2_avg">--</td>
+                <td id="no2_min">--</td>
+                <td id="no2_max">--</td>
+            </tr>
+
+            <tr>
+                <td>CO</td>
+                <td id="co">--</td>
+                <td id="co_avg">--</td>
+                <td id="co_min">--</td>
+                <td id="co_max">--</td>
+            </tr>
+
+            <tr>
+                <td>CO2</td>
+                <td id="co2">--</td>
+                <td id="co2_avg">--</td>
+                <td id="co2_min">--</td>
+                <td id="co2_max">--</td>
+            </tr>
+
+            <tr>
+                <td>O3</td>
+                <td id="o3">--</td>
+                <td id="o3_avg">--</td>
+                <td id="o3_min">--</td>
+                <td id="o3_max">--</td>
+            </tr>
+
+            <tr>
+                <td>SO2</td>
+                <td id="so2">--</td>
+                <td id="so2_avg">--</td>
+                <td id="so2_min">--</td>
+                <td id="so2_max">--</td>
+            </tr>
+        </table>
+    </div>
+
+    <a href="index.html" class="btn">← Back</a>
+
+</div>
+
+<script>
+// City
+const params = new URLSearchParams(window.location.search);
+const city = params.get("city");
+if (city) document.getElementById("cityName").innerText = city;
+
+// Clock
+function updateTime() {
+    const now = new Date();
+    document.getElementById("dateTime").innerText =
+        now.toLocaleDateString('en-IN') + " | " + now.toLocaleTimeString();
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+/*
+BACKEND HOOK (example):
+
+document.getElementById("aqiValue").innerText = data.aqi;
+document.getElementById("aqiStatus").innerText = data.status;
+document.getElementById("mainPollutant").innerText = data.main_pollutant;
+*/
+</script>
+
+</body>
+</html>
