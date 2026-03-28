@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQI Dashboard</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .city-list {
+            text-align: left;
+            margin: 20px;
+        }
+        .city-list ul li a {
+            color: red;
+            font-weight: bold;
+        }
+        .aqi-box {
+            width: 25%;
+            padding: 20px;
+            border-radius: 10px;
+            color: black;
+            font-weight: bold;
+        }
+        .satisfactory { background: yellow; }
+        .moderate { background: orange; }
+        .poor { background: red; }
+        .aqi-chart {
+            margin: 20px auto;
+            width: 80%;
+            height: 400px;
+            background: white;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .btn {
+            background: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">AQI Predictive Model</div>
+    <div>Predict AQI of a City</div>
+    <form action="aqi-result.html" method="get">
+        <input type="text" id="city" name="city" placeholder="Enter City Name">
+        <button type="submit" class="btn">Predict AQI</button>
+    </form>
+    <div class="city-list">
+        <h3>Top 20 Cities in India:</h3>
+        <ul>
+            <li><a href="aqi-result.html?city=Delhi">Delhi</a></li>
+            <li><a href="aqi-result.html?city=Mumbai">Mumbai</a></li>
+            <li><a href="aqi-result.html?city=Bengaluru">Bengaluru</a></li>
+            <li><a href="aqi-result.html?city=Hyderabad">Hyderabad</a></li>
+            <li><a href="aqi-result.html?city=Ahmedabad">Ahmedabad</a></li>
+            <li><a href="aqi-result.html?city=Chennai">Chennai</a></li>
+            <li><a href="aqi-result.html?city=Kolkatta">Kolkatta</a></li>
+            <li><a href="aqi-result.html?city=Surat">Surat</a></li>
+            <li><a href="aqi-result.html?city=Pune">Pune</a></li>
+            <li><a href="aqi-result.html?city=Jaipur">Jaipur</a></li>
+            <li><a href="aqi-result.html?city=Lucknow">Lucknow</a></li>
+            <li><a href="aqi-result.html?city=Kanpur">Kanpur</a></li>
+            <li><a href="aqi-result.html?city=Nagpur">Nagpur</a></li>
+            <li><a href="aqi-result.html?city=Patna">Patna</a></li>
+            <li><a href="aqi-result.html?city=Indore">Indore</a></li>
+            <li><a href="aqi-result.html?city=Thane">Thane</a></li>
+            <li><a href="aqi-result.html?city=Bhopal">Bhopal</a></li>
+            <li><a href="aqi-result.html?city=Visakhapatnam">Visakhapatnam</a></li>
+            <li><a href="aqi-result.html?city=Srinagar">Srinagar</a></li>
+            <li><a href="aqi-result.html?city=Gandhinagar">Gandhinagar</a></li>
+        </ul>
+    </div>
+</body>
+</html>
