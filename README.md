@@ -68,3 +68,8 @@
 
 **Output:-**
 
+<img width="1912" height="924" alt="Image" src="https://github.com/user-attachments/assets/3026069a-698c-4932-b418-b45ea50e8c21" />
+
+<img width="1902" height="915" alt="Image" src="https://github.com/user-attachments/assets/3f7e162d-95b3-4f1f-b41f-5d258f3eca8c" />
+
+<img width="1872" height="917" alt="Image" src="https://github.com/user-attachments/assets/d9a0b6d1-2090-4375-89ef-8994d9db6275" />
